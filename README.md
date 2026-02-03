@@ -34,4 +34,4 @@ Control Plane → Validator → Executor → Logger
 - Architecture diagram
 - Design decisions documented
 
-**You have 8-12 hours. Build it.**
+
