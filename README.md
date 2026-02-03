@@ -1,38 +1,37 @@
-# Pipeline Orchestrator with Guardrails
+## Project Spec: Pipeline Orchestrator
 
-A config-driven data pipeline control plane demonstrating failure handling, schema governance, and multi-tenant safety patterns.
+**Goal:** Build a config-driven pipeline orchestrator that demonstrates platform engineering principles.
 
-## Why This Project
+**Requirements:**
+1. Read YAML config files
+2. Validate config before execution (guardrails)
+3. Execute pipeline steps with retry logic
+4. Check schema compatibility
+5. Output structured JSON logs
 
-Demonstrates platform engineering principles I applied at Lowe's:
-- Control plane validation before execution
-- Schema contract enforcement (backward compatibility)
-- Failure isolation and retry semantics
-- Multi-tenant path restrictions
+**Architecture:**
+Control Plane → Validator → Executor → Logger
 
-## Architecture
+**Guardrails to implement:**
+- Require schema version in config
+- Block forbidden paths (/system, /admin, /root)
+- Cap retries at 3 max
+- Enforce retry policy exists
 
-[Will add diagram]
+**Retry logic:**
+- Exponential backoff: 1s, 2s, 4s
+- Max 3 retries per step
+- Step-level failure isolation
 
-Control Plane → Validator → Scheduler → Executor → Logger
+**Schema checker:**
+- Allow: adding new columns
+- Reject: deleting columns, changing types, changing primary keys
 
-## Features
+**Deliverables:**
+- GitHub repo with README
+- Working orchestrator.py
+- Sample configs (valid + invalid)
+- Architecture diagram
+- Design decisions documented
 
-- **Config Validation**: Schema version required, forbidden paths blocked
-- **Schema Contract Enforcement**: Additive-only changes, no column deletion/PK changes
-- **Retry Semantics**: Exponential backoff, max 3 retries per step
-- **Step-Level Failure Isolation**: Individual steps fail independently
-- **Structured Logging**: JSON logs for observability
-
-## Tech Stack
-
-- Python 3.9+
-- Standard library only (no external dependencies except PyYAML)
-
-## Quick Start
-
-[Will add usage instructions]
-
-## Design Decisions
-
-[Will document: why guardrails, why retry caps, why schema contracts]
+**You have 8-12 hours. Build it.**
