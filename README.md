@@ -1,9 +1,8 @@
-## Project Spec: Pipeline Orchestrator
 
 **Goal:** Build a config-driven pipeline orchestrator that demonstrates platform engineering principles.
 
 **Requirements:**
-1. Read JSON config files
+1. Read YAML config files
 2. Validate config before execution (guardrails)
 3. Execute pipeline steps with retry logic
 4. Check schema compatibility
